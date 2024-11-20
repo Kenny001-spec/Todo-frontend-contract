@@ -1,7 +1,9 @@
 import { AlertDialog, Box, Button, Card, Dialog, Flex, Text, TextArea, TextField } from "@radix-ui/themes"
 
 
-const Todo = () => {
+
+const Todo = ({ todo, key }) => {
+    const { title, description, status } = todo;
     return (
         <Box className="w-full">
             <Card variant="surface" >
@@ -10,19 +12,19 @@ const Todo = () => {
                         Title
                     </Text>
                     <Text as="div" color="gray" size="2">
-                        Reading
+                        {title}
                     </Text>
                     <Text as="div" size="2" weight="bold">
                         Description
                     </Text>
                     <Text as="div" color="gray" size="2">
-                        I need to read by 7pm ahead of Nethermind interview.
+                        {description}
                     </Text>
                     <Text as="div" size="2" weight="bold">
                         Status
                     </Text>
                     <Text as="div" color="gray" size="2">
-                        Created
+                       {status}
                     </Text>
                 </Flex>
 
@@ -72,13 +74,15 @@ const Todo = () => {
                                     </Text>
                                     <TextField.Root
                                         placeholder="Enter title"
+                                        defaultValue={title}
                                     />
                                 </label>
                                 <label>
                                     <Text as="div" size="2" mb="1" weight="bold">
                                         Todo Description
                                     </Text>
-                                    <TextArea placeholder="Enter description" />
+                                    <TextArea placeholder="Enter description" defaultValue={description} />
+                                    {description}
                                 </label>
                             </Flex>
 
