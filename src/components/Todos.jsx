@@ -13,7 +13,7 @@ const Todos = () => {
                     todos.length === 0 ? 
                     <Text as="h1" className="text-3xl font-medium text-stone-200">
                     There are no available todos</Text> :
-                    todos.map((todo, index) => (<Todo key={index} todo={todo} />))
+                    todos.map((todo, index) => (<Todo key={index} todo={todo} index={index} />))
                 }
             </section>
         </div>

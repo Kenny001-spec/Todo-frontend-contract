@@ -1,4 +1,4 @@
-import {createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
+import {createContext, useCallback, useContext, useEffect, useState } from "react";
 import useContractInstance from "../hooks/useContractInstance";
 
 
@@ -13,7 +13,8 @@ export const TodoContextProvider = ({children}) => {
 
     const readOnlyTodoContract = useContractInstance();
 
-    const formatEnum = useMemo((value) => {
+
+    const formatEnum = (value) => {
 
         const status = Number(value);
 
@@ -31,7 +32,7 @@ export const TodoContextProvider = ({children}) => {
                 return "Pending";
             
         }
-    }, []);
+    }
 
 
 
@@ -44,17 +45,18 @@ export const TodoContextProvider = ({children}) => {
             console.log(data);
 
             const formattedTodos = data.map((todo) => ({
-                titte: todo.title,
+                title: todo.title,
                 description: todo.description,
                 status: formatEnum(todo.status)
             }))
             
+            setTodos(formattedTodos);
         } catch (error) {
 
             console.log("Error fetching todos", error);
             
         }
-    }, [readOnlyTodoContract, formatEnum]);
+    }, [readOnlyTodoContract]);
 
     useEffect(() => {
         getTodo();
